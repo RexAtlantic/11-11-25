@@ -22,6 +22,8 @@ public class gamemanager : MonoBehaviour
     //add a end reference
     public InputActionReference end;
 
+    public InputActionReference clear;
+
     //sets the folder
     private const string DIR_RES = "/Resources";
 
@@ -64,6 +66,11 @@ public class gamemanager : MonoBehaviour
 
             score = 0;
         }
+
+        if (clear.action.WasPressedThisFrame())
+        {
+            ClearSaves();
+        }
     }
 
     public void SaveScore(int s)
@@ -76,6 +83,9 @@ public class gamemanager : MonoBehaviour
 
         File.WriteAllText(FILE_PATH_SAVES, fileContents);
     }
-
+    public void ClearSaves()
+    {
+        File.WriteAllText(FILE_PATH_SAVES, "");
+    }
 
 }
